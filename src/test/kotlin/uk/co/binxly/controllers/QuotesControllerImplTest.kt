@@ -5,15 +5,18 @@ import io.mockk.mockk
 import io.quarkus.test.junit.QuarkusMock
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
-import org.junit.jupiter.api.Assertions.*
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
+import uk.co.binxly.models.Quote
 import uk.co.binxly.services.QuotesServiceImpl
 import javax.ws.rs.core.MediaType
 
 const val QUOTES_PATH: String = "/v1/quotes/kanye"
+
+val testQuote: Quote = Quote("123456", "some quote text", "ye")
 val quotesService: QuotesServiceImpl = mockk()
 
 @QuarkusTest
@@ -23,7 +26,7 @@ internal class QuotesControllerImplTest {
     @BeforeAll
     fun setupMocks() {
         QuarkusMock.installMockForType(quotesService, QuotesServiceImpl::class.java)
-        every { quotesService.getQuote("kanye") } returns "Hello from MOCKED main service"
+        every { quotesService.getQuote("kanye") } returns testQuote
     }
 
     @Test
@@ -52,6 +55,16 @@ internal class QuotesControllerImplTest {
             .statusCode(200)
             .and()
             .header("content-type", MediaType.APPLICATION_JSON)
+    }
+
+    @Test
+    fun get_quote_returns_quote() {
+        given()
+            .`when`().get(QUOTES_PATH)
+            .then().statusCode(200)
+            .and().body("id", equalTo("123456"))
+            .and().body("text", equalTo("some quote text"))
+            .and().body("author", equalTo("ye"))
     }
 
 }

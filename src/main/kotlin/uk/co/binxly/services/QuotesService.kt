@@ -1,9 +1,9 @@
 package uk.co.binxly.services
 
-import javax.enterprise.context.ApplicationScoped
+import uk.co.binxly.models.Quote
 
 interface QuotesService {
 
-    fun getQuote(category: String) : String
+    fun getQuote(category: String) : Quote
 
 }

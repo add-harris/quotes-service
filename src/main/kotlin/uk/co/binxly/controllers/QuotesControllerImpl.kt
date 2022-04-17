@@ -26,7 +26,7 @@ class QuotesControllerImpl(
     @Path("{category}")
     override fun getQuote(@PathParam("category") category : String): Response {
         logger.info(category)
-        return Response.ok("{ \"text\": \"${quotesService.getQuote(category)}\"}").build()
+        return Response.ok(quotesService.getQuote(category)).build()
     }
 
     @GET
