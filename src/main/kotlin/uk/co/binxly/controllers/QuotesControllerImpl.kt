@@ -7,7 +7,7 @@ import javax.ws.rs.Path
 import javax.ws.rs.PathParam
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
-
+import javax.ws.rs.core.Response
 
 
 @ApplicationScoped
@@ -19,8 +19,9 @@ class QuotesControllerImpl : QuotesController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{category}")
-    override fun getQuote(@PathParam("category") category : String) {
+    override fun getQuote(@PathParam("category") category : String): Response {
         logger.info(category)
+        return Response.ok("{}").build()
     }
 
     @GET
