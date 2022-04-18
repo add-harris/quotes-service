@@ -27,21 +27,21 @@ internal class QuotesServiceImplTest {
 
     @Test
     fun service_calls_kanye_repository() {
-        every { KanyeQuotes.getQuote(KANYE) } returns testQuote
+        every { KanyeQuotes.getQuote() } returns testQuote
         quotesServiceImpl.getQuote(KANYE)
-        verify(exactly = 1) { KanyeQuotes.getQuote(KANYE) }
+        verify(exactly = 1) { KanyeQuotes.getQuote() }
     }
 
     @Test
     fun returns_quote_from_kanye_repository() {
-        every { KanyeQuotes.getQuote(KANYE) } returns testQuote
+        every { KanyeQuotes.getQuote() } returns testQuote
         val result = quotesServiceImpl.getQuote(KANYE)
         assertEquals(testQuote, result)
     }
 
     @Test
     fun returns_null_if_category_not_recognised() {
-        every { KanyeQuotes.getQuote("notCategory") } returns null
+        every { KanyeQuotes.getQuote() } returns null
         val result = quotesServiceImpl.getQuote("notCategory")
         assertNull(result)
     }

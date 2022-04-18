@@ -12,7 +12,7 @@ class QuotesServiceImpl : QuotesService {
 
     override fun getQuote(category: String): Quote? {
         return when (category) {
-            KANYE -> KanyeQuotes.getQuote(category)
+            KANYE -> KanyeQuotes.getQuote()
             else -> null
         }
     }

@@ -65,4 +65,6 @@ internal class QuotesControllerImplTest {
             .and().body("author", equalTo("ye"))
     }
 
+    // TODO - add 404 test
+
 }

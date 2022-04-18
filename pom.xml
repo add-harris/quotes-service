@@ -16,6 +16,10 @@
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.8.0.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+
+    <hamcrest.version>2.2</hamcrest.version>
+    <mockk.version>1.1.0</mockk.version>
+
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -57,7 +61,7 @@
     <dependency>
       <groupId>io.quarkiverse.mockk</groupId>
       <artifactId>quarkus-junit5-mockk</artifactId>
-      <version>LATEST</version>
+      <version>${mockk.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -68,7 +72,7 @@
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest</artifactId>
-      <version>2.2</version>
+      <version>${hamcrest.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

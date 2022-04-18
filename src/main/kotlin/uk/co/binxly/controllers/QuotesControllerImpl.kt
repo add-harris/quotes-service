@@ -25,7 +25,7 @@ class QuotesControllerImpl(
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{category}")
     override fun getQuote(@PathParam("category") category : String): Response {
-        logger.info(category)
+        logger.info("quote request received, category: $category")
         return Response.ok(quotesService.getQuote(category)).build()
     }
 
