@@ -73,4 +73,15 @@ internal class QuotesControllerImplTest {
             .then().statusCode(404)
     }
 
+    @Test
+    fun returns_error_details_for_quote_not_found() {
+        every { quotesService.getQuote("van-damme") } returns null
+        given()
+            .`when`().get("/v1/quotes/van-damme")
+            .then().statusCode(404)
+            .and().body("status", equalTo(404))
+            .and().body("title", equalTo("Not Found."))
+            .and().body("detail", equalTo("No Quote Found for Request."))
+    }
+
 }
