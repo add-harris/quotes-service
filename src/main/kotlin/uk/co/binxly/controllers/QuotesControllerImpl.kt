@@ -1,6 +1,7 @@
 package uk.co.binxly.controllers
 
 import org.slf4j.LoggerFactory
+import uk.co.binxly.models.ErrorResponse
 import uk.co.binxly.services.QuotesService
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Default
@@ -25,9 +26,9 @@ class QuotesControllerImpl(
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{category}")
     override fun getQuote(@PathParam("category") category : String): Response {
-        logger.info("quote request received, category: $category")
+        logger.info("quote request received for category: $category")
         return when (val quote = quotesService.getQuote(category)) {
-            null -> Response.status(404).build()
+            null -> Response.status(404).entity(ErrorResponse.notFound()).build()
             else -> Response.ok(quote).build()
         }
     }
