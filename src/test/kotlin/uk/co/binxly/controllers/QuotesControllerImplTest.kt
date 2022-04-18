@@ -65,6 +65,12 @@ internal class QuotesControllerImplTest {
             .and().body("author", equalTo("ye"))
     }
 
-    // TODO - add 404 test
+    @Test
+    fun return_404_if_category_not_found() {
+        every { quotesService.getQuote("van-damme") } returns null
+        given()
+            .`when`().get("/v1/quotes/van-damme")
+            .then().statusCode(404)
+    }
 
 }
