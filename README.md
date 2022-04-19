@@ -2,14 +2,14 @@
 
 A Quotes API for returning randomized quotes.
 
->**_Including a replica of the infamous [Kanye REST API](https://kanye.rest/)._**
+### _Including a replica of the [Kanye REST API](https://kanye.rest/)_.
 
 ### Tech Stack:
 
 >- [Quarkus](https://quarkus.io/)
->- Kotlin
->- Java 17
->- Maven
+>- [Kotlin](https://kotlinlang.org/)
+>- [Java 17](https://openjdk.java.net/projects/jdk/17/)
+>- [Maven](https://maven.apache.org/)
 
 ## Running Instructions
 
@@ -71,7 +71,7 @@ Response
 
 This API is documented using OpenAPI specification and Swagger-UI, 
 and is available to view on the internet at:
->- https://editor.swagger.io/?url=https://raw.githubusercontent.com/add-harris/quotes-service/main/src/main/resources/openapi.yaml
+>https://editor.swagger.io/?url=https://raw.githubusercontent.com/add-harris/quotes-service/main/src/main/resources/openapi.yaml
 
 When running the application locally you can also access these 
 at the following URLs:
@@ -101,6 +101,6 @@ docker run -i --rm -p 8080:8080 quotes
 #### Build Scripts
 
 Helper scripts are provided for all three of the above steps:
-- `./build-exec.sh`
-- `./build-image.sh`
-- `./run-image.sh`
+>- `./build-exec.sh`
+>- `./build-image.sh`
+>- `./run-image.sh`
