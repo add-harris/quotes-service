@@ -61,8 +61,8 @@ class QuotesControllerImpl(
         @Parameter(name = "id", example = "015", description = "unique quote identifier", schema = Schema(pattern = "[0-9]{3}", type = SchemaType.STRING, format = "[0-9]{3}"))
         id : String
     ) {
-        logger.info(category)
-        logger.info(id)
+        logger.info("quote request received for category: $category, quote id: $id")
+
     }
 
 }

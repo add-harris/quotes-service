@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import uk.co.binxly.services.QuotesServiceImpl
+import uk.co.binxly.utils.Fixtures.QUOTES_BY_ID_PATH
 import uk.co.binxly.utils.Fixtures.QUOTES_PATH
 import uk.co.binxly.utils.Fixtures.testQuote
 import javax.ws.rs.core.MediaType
@@ -82,6 +83,34 @@ internal class QuotesControllerImplTest {
             .and().body("status", equalTo(404))
             .and().body("title", equalTo("Not Found."))
             .and().body("detail", equalTo("No Quote Found for Request."))
+    }
+
+    @Test
+    fun get_quote_by_id_returns_200_response() {
+        given()
+            .`when`().get(QUOTES_BY_ID_PATH)
+            .then()
+            .statusCode(200)
+    }
+
+    @Test
+    fun get_quote_by_id_produces_application_json() {
+        given()
+            .`when`().get(QUOTES_BY_ID_PATH)
+            .then()
+            .statusCode(200)
+            .and()
+            .header("content-type", MediaType.APPLICATION_JSON)
+    }
+
+    @Test
+    fun get_quote_by_id_calls_quotes_service() {
+        given()
+            .`when`().get(QUOTES_BY_ID_PATH)
+            .then()
+            .statusCode(200)
+            .and()
+            .header("content-type", MediaType.APPLICATION_JSON)
     }
 
 }
