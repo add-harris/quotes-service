@@ -18,7 +18,10 @@ class QuotesServiceImpl : QuotesService {
     }
 
     override fun getQuoteById(category: String, id: String): Quote? {
-        return null
+        return when (category) {
+            KANYE -> KanyeQuotes.getQuoteById(id)
+            else -> null
+        }
     }
 
 }
