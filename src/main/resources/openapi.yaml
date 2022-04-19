@@ -1,0 +1,109 @@
+---
+openapi: 3.0.3
+info:
+  title: Kanye REST API (Replica)
+  description: "A replica of the infamous 'Kanye Rest' API :: An API for returning\
+    \ randomized quotes from the legendary Kanye West."
+  contact:
+    url: https://add-harris.github.io/
+  version: 1.0.0
+tags:
+- name: Quotes APIs
+  description: Available for querying quotes.
+paths:
+  /v1/quotes/{category}:
+    get:
+      tags:
+      - Quotes APIs
+      summary: Get randomized quote.
+      parameters:
+      - name: category
+        in: path
+        description: category of quote requested
+        required: true
+        schema:
+          type: string
+        example: kanye
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/quotes/{category}/{id}:
+    get:
+      tags:
+      - Quotes APIs
+      summary: Get quote by id.
+      parameters:
+      - name: category
+        in: path
+        description: category of quote requested
+        required: true
+        schema:
+          type: string
+        example: kanye
+      - name: id
+        in: path
+        description: unique quote identifier
+        required: true
+        schema:
+          format: "[0-9]{3}"
+          pattern: "[0-9]{3}"
+          type: string
+        example: "015"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      description: Error details.
+      type: object
+      properties:
+        status:
+          format: int32
+          description: error status code
+          type: integer
+          example: 404
+        title:
+          description: error type
+          type: string
+          example: Not Found.
+        detail:
+          description: descriptive detail of error
+          type: string
+          example: No Quote Found for Request.
+    Quote:
+      description: Quote object
+      type: object
+      properties:
+        id:
+          description: unique quote identifier
+          type: string
+          example: "015"
+        text:
+          description: quote text
+          type: string
+          example: I make awesome decisions in bike stores!!!
+        author:
+          description: quote author
+          type: string
+          example: Kanye West
