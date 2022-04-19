@@ -8,22 +8,22 @@ info:
     url: https://add-harris.github.io/
   version: 1.0.0
 tags:
-- name: Quotes APIs
-  description: Available for querying quotes.
+  - name: Quotes APIs
+    description: Available for querying quotes.
 paths:
   /v1/quotes/{category}:
     get:
       tags:
-      - Quotes APIs
+        - Quotes APIs
       summary: Get randomized quote.
       parameters:
-      - name: category
-        in: path
-        description: category of quote requested
-        required: true
-        schema:
-          type: string
-        example: kanye
+        - name: category
+          in: path
+          description: category of quote requested
+          required: true
+          schema:
+            type: string
+          example: kanye
       responses:
         "200":
           description: OK
@@ -40,25 +40,25 @@ paths:
   /v1/quotes/{category}/{id}:
     get:
       tags:
-      - Quotes APIs
+        - Quotes APIs
       summary: Get quote by id.
       parameters:
-      - name: category
-        in: path
-        description: category of quote requested
-        required: true
-        schema:
-          type: string
-        example: kanye
-      - name: id
-        in: path
-        description: unique quote identifier
-        required: true
-        schema:
-          format: "[0-9]{3}"
-          pattern: "[0-9]{3}"
-          type: string
-        example: "015"
+        - name: category
+          in: path
+          description: category of quote requested
+          required: true
+          schema:
+            type: string
+          example: kanye
+        - name: id
+          in: path
+          description: unique quote identifier
+          required: true
+          schema:
+            format: "[0-9]{3}"
+            pattern: "[0-9]{3}"
+            type: string
+          example: "015"
       responses:
         "200":
           description: OK

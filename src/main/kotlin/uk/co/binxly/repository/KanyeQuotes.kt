@@ -117,7 +117,7 @@ object KanyeQuotes {
     private val quote103 = Quote("103", "Who made up the term major label in the first place???", KANYE_WEST)
     private val quote104 = Quote("104", "Winning is the only option", KANYE_WEST)
 
-    private val kanyeQuotes = mapOf<String, Quote>(
+    private val kanyeQuotes = mapOf(
         Pair(this.quote000.id, quote000),
         Pair(this.quote001.id, quote001),
         Pair(this.quote002.id, quote002),

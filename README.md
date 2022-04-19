@@ -57,15 +57,26 @@ Response
 ```shell
 < HTTP/1.1 200 OK
 < Content-Type: application/json
-< content-length: 86
+< content-length: 56
 < 
 * Connection #0 to host localhost left intact
 {
-  "id":"015",
-  "text":"I make awesome decisions in bike stores!!!",
-  "author":"Kanye West"
-}    
+  "id": "003",
+  "text": "Decentralize",
+  "author": "Kanye West"
+}   
 ```
+
+## OpenAPI Specification
+
+This API is documented using OpenAPI specification and Swagger-UI, 
+and is available to view on the internet at:
+>- https://editor.swagger.io/?url=https://raw.githubusercontent.com/add-harris/quotes-service/main/src/main/resources/openapi.yaml
+
+When running the application locally you can also access these 
+at the following URLs:
+- OpenAPI Spec: http://localhost:8080/openapi
+- Swagger-UI: http://localhost:8080/swagger-ui
 
 ## Packaging the application
 
@@ -87,3 +98,9 @@ And ran in a docker container with:
 ```shell
 docker run -i --rm -p 8080:8080 quotes
 ```
+#### Build Scripts
+
+Helper scripts are provided for all three of the above steps:
+- `./build-exec.sh`
+- `./build-image.sh`
+- `./run-image.sh`

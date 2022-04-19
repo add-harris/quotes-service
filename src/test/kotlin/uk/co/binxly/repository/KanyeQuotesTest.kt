@@ -25,4 +25,21 @@ internal class KanyeQuotesTest {
         assertEquals(KANYE_WEST, quote?.author)
     }
 
+    @Test
+    fun get_quote_by_id_returns_all_104_quotes() {
+        for (i in 0..104) {
+            val quoteId = i.toString().padStart(3, '0')
+            val quote = KanyeQuotes.getQuoteById(quoteId)
+            assertEquals(KANYE_WEST, quote?.author)
+            assertEquals(quoteId, quote?.id)
+            assertNotNull(quote?.text)
+        }
+    }
+
+    @Test
+    fun get_quote_by_id_returns_null_for_invalid_id() {
+        val invalidIds = listOf("105", "106", "999", "200", "555")
+        invalidIds.forEach { assertNull(KanyeQuotes.getQuoteById(it)) }
+    }
+
 }
