@@ -8,6 +8,6 @@ interface QuotesController {
 
     fun getQuote(category : String) : Response
 
-    fun getQuoteById(category : String, @Pattern(regexp = "[0-9]{3}") id : String)
+    fun getQuoteById(category : String, @Pattern(regexp = "[0-9]{3}") id : String) : Response
 
 }

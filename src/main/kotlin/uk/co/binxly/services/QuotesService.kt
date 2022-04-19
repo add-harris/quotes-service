@@ -6,4 +6,6 @@ interface QuotesService {
 
     fun getQuote(category: String) : Quote?
 
+    fun getQuoteById(category: String, id: String) : Quote?
+
 }

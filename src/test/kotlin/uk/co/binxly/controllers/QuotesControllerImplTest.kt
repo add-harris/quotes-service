@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import uk.co.binxly.services.QuotesServiceImpl
+import uk.co.binxly.utils.Fixtures.KANYE
 import uk.co.binxly.utils.Fixtures.QUOTES_BY_ID_PATH
 import uk.co.binxly.utils.Fixtures.QUOTES_PATH
 import uk.co.binxly.utils.Fixtures.testQuote
@@ -26,6 +27,7 @@ internal class QuotesControllerImplTest {
     fun setupMocks() {
         QuarkusMock.installMockForType(quotesService, QuotesServiceImpl::class.java)
         every { quotesService.getQuote("kanye") } returns testQuote
+        every { quotesService.getQuoteById("kanye", "015") } returns testQuote
     }
 
     @Test
@@ -111,6 +113,25 @@ internal class QuotesControllerImplTest {
             .statusCode(200)
             .and()
             .header("content-type", MediaType.APPLICATION_JSON)
+    }
+
+    @Test
+    fun get_quote_by_id_returns_404_if_no_quote_found() {
+        every { quotesService.getQuoteById(KANYE, "999") } returns null
+        given()
+            .`when`().get("/v1/quotes/kanye/999")
+            .then().statusCode(404)
+    }
+
+    @Test
+    fun get_quote_by_id_returns_error_details_if_quote_not_found() {
+        every { quotesService.getQuoteById(KANYE, "999") } returns null
+        given()
+            .`when`().get("/v1/quotes/kanye/999")
+            .then().statusCode(404)
+            .and().body("status", equalTo(404))
+            .and().body("title", equalTo("Not Found."))
+            .and().body("detail", equalTo("No Quote Found for Request."))
     }
 
 }

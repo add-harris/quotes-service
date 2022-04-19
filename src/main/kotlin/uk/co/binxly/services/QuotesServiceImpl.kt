@@ -17,4 +17,8 @@ class QuotesServiceImpl : QuotesService {
         }
     }
 
+    override fun getQuoteById(category: String, id: String): Quote? {
+        return null
+    }
+
 }
