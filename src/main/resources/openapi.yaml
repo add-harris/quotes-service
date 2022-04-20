@@ -2,8 +2,8 @@
 openapi: 3.0.3
 info:
   title: Kanye REST API (Replica)
-  description: "A replica of the infamous 'Kanye Rest' API :: An API for returning\
-    \ randomized quotes from the legendary Kanye West."
+  description: "A replica of the 'Kanye Rest' API :: An API for returning\
+    \ randomized Kanye West quotes."
   contact:
     url: https://add-harris.github.io/
   version: 1.0.0
